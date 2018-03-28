@@ -1,0 +1,23 @@
+<header>this is a header</header>
+<section>
+	<h1>New Article</h1>
+</section>
+<article>
+	<div>
+		<%= form_for :article, url: articles_path do |f| %>
+			<p>
+				<%= f.label :title %><br>
+				<%= f.text_field :title %>
+			</p>
+
+			<p>
+				<%= f.label :text %><br>
+				<%= f.text_field :text %>
+			</p>	
+
+			<p>
+				<%= f.submit %>
+			</p>
+		<% end %>
+	</div>
+</article>

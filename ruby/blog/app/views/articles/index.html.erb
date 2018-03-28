@@ -1,0 +1,26 @@
+<header>this is a header</header>
+<section>
+	<h1>Articles list</h1>
+</section>
+<article>
+	<table>
+		<tr>
+			<th>title</th>
+			<th>text</th>
+			<th>btn</th>
+		</tr>
+		<% @articles.each do |article| %>
+			<tr>
+				<td>
+					<%= article.title %>
+				</td>
+				<td>
+					<%= article.text %>
+				</td>
+				<td>
+					<%= link_to 'Show',article_path(article) %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+</article>
