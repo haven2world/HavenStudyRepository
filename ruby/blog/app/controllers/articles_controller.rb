@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController	
+	http_basic_authenticate_with name: 'haven' , password: '123', except: [:index, :show]
+	
 	def index
 		@articles = Article.all
 	end
@@ -41,11 +43,13 @@ class ArticlesController < ApplicationController
 
 	def show
 		@article = Article.find(params[:id])
+		@test = @article.comments.size
+		# @article.comments.each {|k| @test +=1 }
 	end
 
 
 	private
-		def article_params
-			params.require(:article).permit(:title, :text)
-		end
+	def article_params
+		params.require(:article).permit(:title, :text)
+	end
 end
