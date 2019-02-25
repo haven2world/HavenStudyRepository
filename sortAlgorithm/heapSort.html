@@ -1,0 +1,52 @@
+<script type="text/javascript" src='./test.js'></script>
+<script>
+	function _shouldExchange(a,b){
+		return a-b>0;
+	}
+
+	function swap(list,a,b){
+		let temp = list[a];
+		list[a] = list[b];
+		list[b] = temp;
+	}
+
+	function sort(list, shouldExchange=_shouldExchange){
+		let count = 0;
+
+		let len = list.length;
+		function adjustHeap(list, index, len){
+			let left = 2*index+1,
+				right = 2*index+2
+				largest = index;
+			if(right < len && shouldExchange(list[right],list[largest])){
+				largest = right;
+			}
+			if(left < len && shouldExchange(list[left],list[largest])){
+				largest = left;
+			}
+			if(largest !== index){
+				++count;
+				swap(list, index, largest);
+				adjustHeap(list,largest,len)
+			}
+		}
+
+		for(let i=Math.floor(len/2);i>=0;--i){
+			adjustHeap(list,i,len);
+		}
+
+		while(len>0){
+			++count;
+			swap(list,len-1,0);
+			--len;
+			adjustHeap(list,0,len);
+		}
+
+		console.log(count);
+		return list;
+	}
+
+	test(sort)
+	console.log(sort([5,1,3,6,9,7,4,2,10,11]))
+	console.log(sort([{num:1,index:1},{num:5},{num:1,index:2},{num:3},{num:6},{num:9},{num:7},{num:4},{num:2}],function(a,b){return a.num-b.num>0}))
+</script>
