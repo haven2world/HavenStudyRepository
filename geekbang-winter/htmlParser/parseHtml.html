@@ -1,0 +1,32 @@
+<script type="text/javascript" src='./token.js'></script>
+<script type="text/javascript" src='./lexicalAnalysis.js'></script>
+<script type="text/javascript" src='./grammaAnalysis.js'></script>
+<script>
+	let template = `
+	<!DOCTYPE>
+	<html maaa=a>
+		<head>
+			<title>cool></title>
+		</head>
+		<body>
+			<img src="a"/>
+		</body>
+	</html>
+	`;
+
+	let getInput = (function(){
+		let index = 0;
+
+		return function(){
+			return template[index++];
+		}
+	})();
+	
+	let _state = dataState;
+	let char;
+
+	while(char = getInput()){
+		_state = _state(char);
+	}
+	
+</script>
