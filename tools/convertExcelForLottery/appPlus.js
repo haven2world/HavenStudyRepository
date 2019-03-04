@@ -1,13 +1,13 @@
 var xlsx = require('node-xlsx');
 var fs = require('fs');
 
-var sample = JSON.stringify({"sn":"8627","name":"秦爽","loc":"成都","laId":"","gaId":"","laIdCopy":"","forLa":"false","forGa":"false","done":"",rtx:"qinshuang"});
+var sample = JSON.stringify({"sn":"8627","name":"你好","loc":"成都","laId":"","gaId":"","laIdCopy":"","forLa":"false","forGa":"false","done":"",rtx:"test"});
 
 var result = [];
 var resultMap = {};
 
 //需要根据表格设置
-var sheets = xlsx.parse('./temp/2019西山居年夜饭名单（抽奖）0120.xls');//获取到所有sheets
+var sheets = xlsx.parse('./temp/yigeexcel.xls');//获取到所有sheets
 var keyMap = {
 	0:'sn',
 	1:'name',

@@ -1,6 +1,16 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<title>html parser</title>
+</head>
+<body>
+
+</body>
+</html>
 <script type="text/javascript" src='./token.js'></script>
 <script type="text/javascript" src='./lexicalAnalysis.js'></script>
 <script type="text/javascript" src='./grammaAnalysis.js'></script>
+<script type="text/javascript" src='./nodeClass.js'></script>
 <script>
 	let template = `
 	<!DOCTYPE>
@@ -21,12 +31,33 @@
 			return template[index++];
 		}
 	})();
-	
-	let _state = dataState;
-	let char;
 
-	while(char = getInput()){
-		_state = _state(char);
+	class HTMLParser{
+		constructor(input){
+			this.grammaParser = new HTMLGrammaParser();
+			this.lexicalParser = new HTMLLexicalParser(this.emitToken.bind(this));
+
+			this.input = input;
+		}
+
+		emitToken(token){
+			// console.log(token)
+			token.constructor.current = null;
+
+			this.grammaParser.receiver(token);
+		}
+
+		run(){
+			let char;
+			while(char = getInput()){
+				this.lexicalParser.receiver(char);
+			}
+
+			console.log(this.grammaParser.output());
+		}
 	}
+
+	let parser = new HTMLParser(getInput);
+	parser.run();
 	
 </script>

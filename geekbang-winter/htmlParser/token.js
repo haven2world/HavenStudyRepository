@@ -55,12 +55,19 @@
 		}
 	}
 
+	class SelfClosingTagToken extends Token{
+		constructor(){
+			super();
+		}
+	}
+
 
 
 
 	window.TagToken = TagToken;
 	window.StartTagToken = StartTagToken;
 	window.EndTagToken = EndTagToken;
+	window.SelfClosingTagToken = SelfClosingTagToken;
 	window.MarkupDeclarationToken = MarkupDeclarationToken;
 	window.AttributeNameToken = AttributeNameToken;
 	window.AttributeValueToken = AttributeValueToken;
