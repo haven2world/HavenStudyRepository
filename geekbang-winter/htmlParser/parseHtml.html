@@ -49,7 +49,7 @@
 
 		run(){
 			let char;
-			while(char = getInput()){
+			while(char = this.input()){
 				this.lexicalParser.receiver(char);
 			}
 
