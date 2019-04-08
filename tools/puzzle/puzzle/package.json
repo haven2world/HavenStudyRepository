@@ -2,6 +2,7 @@
   "name": "puzzle",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://149.129.52.68/puzzle/",
   "dependencies": {
     "hotkeys-js": "^3.6.2",
     "react": "^16.8.6",
