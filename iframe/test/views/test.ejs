@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=gb2312"/>
+    <title>test</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <style type="text/css">
+        html,body,iframe{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <iframe id="test" src="/test/"></iframe>
+<script type="text/javascript">
+    $(function(){
+        let iframe = $("#test")[0]
+        iframe.addEventListener('load',()=>{
+            let iframeDocument = iframe.contentWindow.document;
+       
+            let handler = iframeDocument.body.addEventListener('click',()=>alert('clicked'))
+            console.log(handler)
+        });
+    });
+
+</script>
+</body>
+</html>
