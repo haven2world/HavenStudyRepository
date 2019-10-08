@@ -1,9 +1,9 @@
 var xlsx = require('node-xlsx');
 var fs = require('fs');
 
-var sheets = xlsx.parse('./temp/【测试】抽奖活动名单测试@12.13.xls');//获取到所有sheets
+var sheets = xlsx.parse('./temp/工作簿 9月26日10时14分54秒.xlsx');//获取到所有sheets
 
-var sample = JSON.stringify({"sn":"8627","name":"秦爽","loc":"成都","laId":"","gaId":"","forLa":"true","forGa":"true","done":"",rtx:"qinshuang"});
+var sample = JSON.stringify({"sn":"-","name":"秦爽","loc":"成都","laId":"","gaId":"","forLa":"true","forGa":"true","done":"",rtx:"qinshuang"});
 
 var result = [];
 

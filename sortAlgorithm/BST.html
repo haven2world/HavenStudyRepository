@@ -1,0 +1,137 @@
+<script>
+	function TNode(value, parent){
+		this.value = value;
+		this.left = null;
+		this.right = null;
+		this.parent = parent || null;
+	}
+	function BST(){
+		this.head = null;
+	}
+	BST.prototype.find = function(search, head){
+		let value = search;
+		let type = 'eql';
+		if(!head){
+			head = this.head;
+		}
+		if(typeof search === 'object'){
+			if(search.eql !== undefined){
+				value = search.eql;
+			}else if(search.lt !== undefined){
+				value = search.lt;
+				type = 'lt';
+			}else if(search.gt  !== undefined){
+				value = search.gt;
+				type = 'gt';
+			}
+		}
+
+		switch(type){
+			case 'eql':{
+				if(value === head.value){
+					return head;
+				}else if(value > head.value && head.right){
+					return this.find(search, head.right);
+				}else if(value < head.value && head.left){
+					return this.find(search, head.left);
+				}else{
+					return null;
+				}
+				break;
+			}
+			case 'lg':{
+				if(value <= head.value && head.left){
+					return this.find(search, head.left);
+				}else if(value > head.value){
+					if(head.right){
+						let res = this.finb(search, head.right);
+						return res === null? head : res;
+					}else{
+						return head;
+					}
+				}else{
+					return null;
+				}
+				break;
+			}
+			case 'gt':{
+				if(value >= head.value && head.right){
+					return this.find(search, head.right);
+				}else if(value < head.value){
+					if(head.left){
+						let res = this.finb(search, head.left);
+						return res === null? head : res;
+					}else{
+						return head;
+					}
+				}else{
+					return null;
+				}
+				break;
+			}
+		}
+
+	}
+	BST.prototype.minimum = function(head){
+		if(!head){
+			head = this.head;
+		}
+		while(head.left !== null){
+			head = head.left
+		}
+		return head;
+	}
+	BST.prototype.add = function(v, head){
+		if(!head){
+			head = this.head;
+		}
+		if(this.head === null){
+			this.head = new TNode(v);
+		}else if(v > head.value){
+			if(head.right){
+				this.add(v, head.right);
+			}else{
+				head.right = new TNode(v, head);
+			}
+		}else if(v < head.value){
+			if(head.left){
+				this.add(v, head.left);
+			}else{
+				head.left = new TNode(v, head);
+			}
+		}
+	}
+	BST.prototype.transplant = function(u, v){
+		if(!u.parent){
+			this.head = v;
+		}else if(u === u.parent.left){
+			u.parent.left = v;
+		}else{
+			u.parent.right = v;
+		}
+		if(v !== null){
+			v.parent = u.parent;
+		}
+	}
+	BST.prototype.delete = function(node){
+		if(!node.left && !node.right){
+			(node.parent.left === node)&&(node.parent.left = null);
+			(node.parent.right === node)&&(node.parent.right = null);
+			node.parent = null;
+		}else if(!node.left){
+			this.transplant(node, node.right);
+		}else if(!node.right){
+			this.transplant(node, node.left);
+		}else{
+			const min = this.minimum(node.right);
+			if(min.parent !== node){
+				this.transplant(min, min.right);
+				min.right = z.right;
+				min.right.parent = min;
+			}
+			this.transplant(node, min);
+			min.left = node.left;
+			min.left.parent = min;
+		}
+	}
+</script>

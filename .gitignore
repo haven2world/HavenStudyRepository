@@ -1,2 +1,4 @@
 /tools/convertExcelForLottery/temp
 /tools/convertExcelForLottery/node_modules
+/iframe/test/node_modules
+/geekbang-winter/babel/babel-name/node_modules
