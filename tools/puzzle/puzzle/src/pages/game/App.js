@@ -1,5 +1,5 @@
 import React, { Component, useState, useRef, useEffect } from 'react';
-import logo from './logo.svg';
+import logo from '../../logo.svg';
 import './App.css';
 import hotkeys from 'hotkeys-js'
 
